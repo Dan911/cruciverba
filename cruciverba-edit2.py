@@ -201,7 +201,6 @@ class Parola:
 		self.nome = nome
 		self.lunghezza = len(nome)
 		self.ricorrenze = 0
-		self.definizione = ''
 	
 	def __str__(self):
 		return "%s"%(self.nome)
