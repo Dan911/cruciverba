@@ -24,8 +24,8 @@ class Posizione:
 		self.parola = ''#contiene il nome della parola inserita
 	
 	def __repr__(self): 
-		return "(coordinate: %s, orientamento: %d, lunghezza: %d, incastri: %d)\n" % (self.coordinate, 
-			self.orientamento, self.lunghezza, self.incastri)
+		return "(coordinate: %s, orientamento: %d, lunghezza: %d, incastri: %d, parola: %s)\n" % (self.coordinate, 
+			self.orientamento, self.lunghezza, self.incastri, self.parola)
 
 class Cella:
 	def __init__(self, riga, colonna):
@@ -362,9 +362,18 @@ def aggiorna_definizioni(indirizzo):
 	file_definizioni = open(indirizzo,"r+")
 	dizionario_definizioni = pickle.load(f) 	#dizionario con chiave la parola e valore la definizione
 	file_definizioni.close()
+
+	parole_orizzontali = []
+	parole_verticali = []
 	
-	parole_orizzontali = c.self.posizioni[0].values()
-	parole_verticali =  c.self.posizioni[1].values()
+	posizioni_orizzontali = c.posizioni[0].items()
+	posizioni_verticali = c.posizioni[1].items()
+	
+	for i in range(len(posizioni_orizzontali)):
+		parole_orizzontali += posizioni_orizzontali[i].parola
+
+	for i in range(len(posizioni_verticali)):
+		parole_verticali += posizioni_verticali[i].parola
 
 	for i in range(len(parole_orizzontali)):
 		parola = parole_orizzontali[i]
@@ -385,7 +394,6 @@ def aggiorna_definizioni(indirizzo):
 
 aggiorna_definizioni(indirizzo_file_definizioni)
 #-----------------------------------------------------------------------
-
 
 
 
